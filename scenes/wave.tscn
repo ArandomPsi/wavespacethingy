@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpbmcv8e0q2kc"]
+
+[ext_resource type="Script" uid="uid://c7u01mxrvm1w5" path="res://scripts/wave.gd" id="1_y5ysc"]
+[ext_resource type="Texture2D" uid="uid://dpen2annhu6pv" path="res://wavespaceassets/wave.svg" id="2_h2l3e"]
+[ext_resource type="Texture2D" uid="uid://bxrvmqy4qjctl" path="res://wavespaceassets/Wave01-2.svg" id="3_sl0wx"]
+
+[sub_resource type="Gradient" id="Gradient_h2l3e"]
+offsets = PackedFloat32Array(0, 0.326087, 0.677536, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sl0wx"]
+gradient = SubResource("Gradient_h2l3e")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2l3e"]
+radius = 5.0
+
+[node name="wave" type="Node2D"]
+script = ExtResource("1_y5ysc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_h2l3e")
+offset = Vector2(6, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+rotation = 1.5708
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_sl0wx")
+
+[node name="offset" type="Node2D" parent="."]
+show_behind_parent = true
+
+[node name="trail" type="Line2D" parent="offset"]
+width = 20.0
+texture = SubResource("GradientTexture2D_sl0wx")
+texture_mode = 2
+sharp_limit = 200.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(200, 0)
+limit_top = 0
+limit_bottom = 648
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_h2l3e")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

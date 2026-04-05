@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://blpx8vsujfy6j"]
+
+[ext_resource type="Script" uid="uid://b0tm5jxibj01m" path="res://scripts/decos.gd" id="1_btpxs"]
+[ext_resource type="Texture2D" uid="uid://dxw5bcrpnbc3i" path="res://wavespaceassets/Waved3.svg" id="1_fro33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umt3m"]
+size = Vector2(270, 263.044)
+
+[node name="deco1" type="Node2D"]
+script = ExtResource("1_btpxs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(30.5, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("1_fro33")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(5, 162)
+rotation = 0.785398
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_umt3m")
+
+[node name="enabaler" type="VisibleOnScreenEnabler2D" parent="."]
+visible = false
+position = Vector2(1.5, 0.5)
+scale = Vector2(58.85, 38.75)
+
+[connection signal="screen_entered" from="enabaler" to="." method="_on_enabaler_screen_entered"]

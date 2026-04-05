@@ -1,0 +1,389 @@
+[gd_scene load_steps=22 format=3 uid="uid://dhsyuluajfcty"]
+
+[ext_resource type="Shader" uid="uid://cvewxbf1i0cyh" path="res://shaders/sky.gdshader" id="1_6fk1w"]
+[ext_resource type="PackedScene" uid="uid://cpbmcv8e0q2kc" path="res://scenes/wave.tscn" id="1_kwcxs"]
+[ext_resource type="PackedScene" uid="uid://dfwoctslxu20e" path="res://scenes/deco/deco_1.tscn" id="2_yowm7"]
+[ext_resource type="PackedScene" uid="uid://blpx8vsujfy6j" path="res://scenes/deco/deco2.tscn" id="3_5wgtu"]
+[ext_resource type="PackedScene" uid="uid://d1gal6gberxtv" path="res://scenes/deco/attributechanger.tscn" id="4_efggw"]
+[ext_resource type="Shader" uid="uid://bft871om2psql" path="res://shaders/water.gdshader" id="5_g8l4j"]
+
+[sub_resource type="Gradient" id="Gradient_s36se"]
+offsets = PackedFloat32Array(0, 0.542373)
+colors = PackedColorArray(1, 1, 1, 1, 0.44, 1, 0.990667, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8qn3e"]
+gradient = SubResource("Gradient_s36se")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mxay4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6m7oc"]
+seamless = true
+noise = SubResource("FastNoiseLite_mxay4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wj07n"]
+shader = ExtResource("1_6fk1w")
+shader_parameter/texture2 = SubResource("NoiseTexture2D_6m7oc")
+shader_parameter/colorTexture = SubResource("GradientTexture1D_8qn3e")
+shader_parameter/speed = Vector2(0.05, 0)
+shader_parameter/speed2 = Vector2(0.2, 0.2)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6fk1w"]
+
+[sub_resource type="Gradient" id="Gradient_6fk1w"]
+offsets = PackedFloat32Array(0.696667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s36se"]
+gradient = SubResource("Gradient_6fk1w")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="Environment" id="Environment_5wgtu"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 8.83
+glow_levels/2 = 0.37
+glow_levels/3 = 0.0
+glow_intensity = 0.11
+glow_bloom = 0.24
+glow_blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8l4j"]
+size = Vector2(142, 935)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6fk1w"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s36se"]
+seamless = true
+noise = SubResource("FastNoiseLite_6fk1w")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8qn3e"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mxay4"]
+seamless = true
+noise = SubResource("FastNoiseLite_8qn3e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6m7oc"]
+shader = ExtResource("5_g8l4j")
+shader_parameter/offSet = 0.0
+shader_parameter/YDistortion = 1.0
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_mxay4")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_s36se")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.35
+shader_parameter/distortionForce = 0.028
+shader_parameter/WDBrightness = 3.0
+shader_parameter/WDFreq = 0.55
+shader_parameter/WDSize = 1.0
+shader_parameter/WDSpeed = 10.9
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.026
+shader_parameter/backGroundDirY = 0.01
+
+[node name="testmap" type="Node2D"]
+
+[node name="bg" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="bg"]
+motion_scale = Vector2(0.05, 0.05)
+
+[node name="bg" type="ColorRect" parent="bg/ParallaxLayer"]
+material = SubResource("ShaderMaterial_wj07n")
+offset_left = -234.0
+offset_top = -118.0
+offset_right = 2838.0
+offset_bottom = 947.0
+color = Color(0.35, 0.5775, 1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/ParallaxLayer"]
+modulate = Color(0.983333, 1, 0, 1)
+material = SubResource("CanvasItemMaterial_6fk1w")
+position = Vector2(1078, 173)
+scale = Vector2(4.59375, 4.59375)
+texture = SubResource("GradientTexture2D_s36se")
+
+[node name="deco" type="Node2D" parent="."]
+
+[node name="deco1" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(2173, 634)
+rotation = -4.71239
+scale = Vector2(-1, 1)
+movingdir = -1
+movingtime = 2.0
+
+[node name="deco19" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(7097, 543)
+rotation = 1.5708
+scale = Vector2(-1, 1)
+
+[node name="deco5" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(3292, 620)
+
+[node name="deco9" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(4584, 634)
+
+[node name="deco6" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(3917, 659)
+rotation = 1.5708
+scale = Vector2(-1, 1)
+
+[node name="deco2" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(2393, 27)
+rotation = -1.5708
+scale = Vector2(-1, -1)
+
+[node name="deco8" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(4307, 72)
+rotation = -1.5708
+scale = Vector2(-1, -1)
+
+[node name="deco15" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(8038, 613)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="deco16" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(6153, 55)
+rotation = -1.5708
+scale = Vector2(-1, -1)
+
+[node name="deco20" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(7467, 48)
+rotation = 4.71239
+scale = Vector2(-1, -1)
+
+[node name="deco21" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(8574, 588)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="deco22" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(7970, 18)
+rotation = 4.71239
+scale = Vector2(-1, -1)
+
+[node name="deco23" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(9211, 661)
+rotation = 3.92699
+scale = Vector2(1, -1)
+
+[node name="deco24" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(8814, -22)
+rotation = 5.49779
+scale = Vector2(-1, -1)
+
+[node name="deco3" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(2835, 646)
+
+[node name="deco10" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(4170, 656)
+
+[node name="deco12" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(5233, 593)
+
+[node name="deco13" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(6007, 593)
+
+[node name="deco14" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(6613, 593)
+
+[node name="deco26" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(7402, 584)
+scale = Vector2(-1, 1)
+
+[node name="deco27" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(8082, 796)
+scale = Vector2(-1, 1)
+
+[node name="deco25" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(9047, 701)
+
+[node name="deco4" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(3181, 152)
+rotation = 3.14159
+
+[node name="deco7" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(3786, 152)
+rotation = 3.14159
+
+[node name="deco11" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(5044, 152)
+rotation = 3.14159
+
+[node name="deco17" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(6851, 152)
+rotation = 3.14159
+
+[node name="deco18" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(5634, 163)
+rotation = 3.14159
+
+[node name="deco28" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(9571, 637)
+rotation = -4.71239
+scale = Vector2(-1, 1)
+
+[node name="deco29" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(14495, 546)
+rotation = 1.5708
+scale = Vector2(-1, 1)
+
+[node name="deco30" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(10690, 623)
+
+[node name="deco31" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(11982, 637)
+
+[node name="deco32" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(11315, 662)
+rotation = 1.5708
+scale = Vector2(-1, 1)
+
+[node name="deco33" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(9928, 61)
+rotation = -1.5708
+scale = Vector2(-1, -1)
+
+[node name="deco34" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(11733, 75)
+rotation = -1.5708
+scale = Vector2(-1, -1)
+
+[node name="deco35" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(15464, 616)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="deco36" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(13579, 58)
+rotation = -1.5708
+scale = Vector2(-1, -1)
+
+[node name="deco37" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(14893, 51)
+rotation = 4.71239
+scale = Vector2(-1, -1)
+
+[node name="deco38" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(16121, 708)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="deco39" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(15395, 43)
+rotation = 4.71239
+scale = Vector2(-1, -1)
+
+[node name="deco40" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(16637, 664)
+rotation = 3.92699
+scale = Vector2(1, -1)
+
+[node name="deco41" parent="deco" instance=ExtResource("2_yowm7")]
+position = Vector2(16240, -19)
+rotation = 5.49779
+scale = Vector2(-1, -1)
+
+[node name="deco42" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(10261, 649)
+
+[node name="deco43" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(11596, 659)
+
+[node name="deco44" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(12659, 596)
+
+[node name="deco45" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(13433, 596)
+
+[node name="deco46" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(14039, 596)
+
+[node name="deco47" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(14828, 587)
+scale = Vector2(-1, 1)
+
+[node name="deco48" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(15508, 799)
+scale = Vector2(-1, 1)
+
+[node name="deco49" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(16473, 704)
+
+[node name="deco50" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(10607, 155)
+rotation = 3.14159
+
+[node name="deco51" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(11212, 155)
+rotation = 3.14159
+
+[node name="deco52" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(12470, 155)
+rotation = 3.14159
+
+[node name="deco53" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(14277, 155)
+rotation = 3.14159
+
+[node name="deco54" parent="deco" instance=ExtResource("3_5wgtu")]
+position = Vector2(13060, 166)
+rotation = 3.14159
+
+[node name="wave" parent="." instance=ExtResource("1_kwcxs")]
+position = Vector2(224, 204)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5wgtu")
+
+[node name="attributechanger4" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(1395, 0)
+speedmod = 1.75
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger4"]
+position = Vector2(61, 457.5)
+shape = SubResource("RectangleShape2D_g8l4j")
+
+[node name="attributechanger6" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(8702, 0)
+speedmod = 0.75
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger6"]
+position = Vector2(61, 457.5)
+shape = SubResource("RectangleShape2D_g8l4j")
+
+[node name="attributechanger7" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(9246, 0)
+speedmod = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger7"]
+position = Vector2(61, 457.5)
+shape = SubResource("RectangleShape2D_g8l4j")
+
+[node name="attributechanger8" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(15725, 0)
+speedmod = 0.5
+anglemod = 63.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger8"]
+position = Vector2(61, 457.5)
+shape = SubResource("RectangleShape2D_g8l4j")
+
+[node name="attributechanger5" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(17012, 0)
+speedmod = 1.75
+anglemod = 63.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger5"]
+position = Vector2(61, 457.5)
+shape = SubResource("RectangleShape2D_g8l4j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6m7oc")
+offset_left = -420.0
+offset_top = 562.0
+offset_right = 18258.0
+offset_bottom = 777.0
