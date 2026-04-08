@@ -341,7 +341,7 @@ environment = SubResource("Environment_5wgtu")
 
 [node name="attributechanger4" parent="." instance=ExtResource("4_efggw")]
 position = Vector2(1395, 0)
-speedmod = 1.75
+speedmod = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger4"]
 position = Vector2(61, 457.5)
