@@ -5,6 +5,8 @@ var angle : float = 45
 var speed : int = 900
 var speedmod : float = 1
 
+var cheatsenabled : bool = false
+
 func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("press"):
@@ -42,6 +44,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("reset"):
 		get_tree().change_scene_to_file("res://scenes/testmap.tscn")
 	
+	if Input.is_action_just_pressed("cheats"):
+		cheatsenabled = not cheatsenabled
+	
+	
 	
 
 func createtrail():
@@ -51,9 +57,11 @@ func createtrail():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	die()
+	if not cheatsenabled:
+		die()
 
 func die():
+	$music.play(0.0)
 	angle = 45
 	speedmod = 1
 	position.x = 0

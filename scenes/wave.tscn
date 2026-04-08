@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cpbmcv8e0q2kc"]
 
 [ext_resource type="Script" uid="uid://c7u01mxrvm1w5" path="res://scripts/wave.gd" id="1_y5ysc"]
-[ext_resource type="Texture2D" uid="uid://dpen2annhu6pv" path="res://wavespaceassets/wave.svg" id="2_h2l3e"]
 [ext_resource type="Texture2D" uid="uid://bxrvmqy4qjctl" path="res://wavespaceassets/Wave01-2.svg" id="3_sl0wx"]
+[ext_resource type="AudioStream" uid="uid://6dd4prpcy66e" path="res://wavespaceassets/Dion Timmer - Shiawase (VIP).mp3" id="4_bj1h1"]
 
 [sub_resource type="Gradient" id="Gradient_h2l3e"]
 offsets = PackedFloat32Array(0, 0.326087, 0.677536, 1)
@@ -22,10 +22,10 @@ script = ExtResource("1_y5ysc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_h2l3e")
 offset = Vector2(6, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.629, 0.47, 1, 1)
 rotation = 1.5708
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("3_sl0wx")
@@ -35,6 +35,7 @@ show_behind_parent = true
 
 [node name="trail" type="Line2D" parent="offset"]
 width = 20.0
+default_color = Color(0.627451, 0.470588, 1, 1)
 texture = SubResource("GradientTexture2D_sl0wx")
 texture_mode = 2
 sharp_limit = 200.0
@@ -50,5 +51,9 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_h2l3e")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bj1h1")
+autoplay = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

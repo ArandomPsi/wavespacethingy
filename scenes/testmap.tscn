@@ -1,11 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://dhsyuluajfcty"]
+[gd_scene load_steps=29 format=3 uid="uid://dhsyuluajfcty"]
 
 [ext_resource type="Shader" uid="uid://cvewxbf1i0cyh" path="res://shaders/sky.gdshader" id="1_6fk1w"]
 [ext_resource type="PackedScene" uid="uid://cpbmcv8e0q2kc" path="res://scenes/wave.tscn" id="1_kwcxs"]
 [ext_resource type="PackedScene" uid="uid://dfwoctslxu20e" path="res://scenes/deco/deco_1.tscn" id="2_yowm7"]
 [ext_resource type="PackedScene" uid="uid://blpx8vsujfy6j" path="res://scenes/deco/deco2.tscn" id="3_5wgtu"]
 [ext_resource type="PackedScene" uid="uid://d1gal6gberxtv" path="res://scenes/deco/attributechanger.tscn" id="4_efggw"]
+[ext_resource type="PackedScene" uid="uid://ca8o0rfokdgch" path="res://scenes/deco/deco3.tscn" id="4_s36se"]
+[ext_resource type="PackedScene" uid="uid://b34pj838mwjck" path="res://scenes/deco/sawblade.tscn" id="5_8qn3e"]
 [ext_resource type="Shader" uid="uid://bft871om2psql" path="res://shaders/water.gdshader" id="5_g8l4j"]
+[ext_resource type="Texture2D" uid="uid://b5kcpv4t6x5fa" path="res://wavespaceassets/SizePortalA.svg" id="6_vfccl"]
+[ext_resource type="Texture2D" uid="uid://nf37d220cu7m" path="res://wavespaceassets/SizePortalB.svg" id="7_vcl1g"]
+[ext_resource type="Texture2D" uid="uid://52snrcf3ouvp" path="res://wavespaceassets/SpeedPortal?.svg" id="8_xdwl4"]
+[ext_resource type="Texture2D" uid="uid://df1ytql3auexx" path="res://wavespaceassets/SpeedPortal+.svg" id="9_odhm6"]
+[ext_resource type="Texture2D" uid="uid://cgy64ftjjdk0v" path="res://wavespaceassets/SpeedPortal+++.svg" id="10_w08k7"]
 
 [sub_resource type="Gradient" id="Gradient_s36se"]
 offsets = PackedFloat32Array(0, 0.542373)
@@ -50,9 +57,6 @@ glow_intensity = 0.11
 glow_bloom = 0.24
 glow_blend_mode = 1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8l4j"]
-size = Vector2(142, 935)
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6fk1w"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s36se"]
@@ -83,12 +87,15 @@ shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
 shader_parameter/backGroundDirX = 0.026
 shader_parameter/backGroundDirY = 0.01
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fk1w"]
+size = Vector2(104, 811)
+
 [node name="testmap" type="Node2D"]
 
 [node name="bg" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="bg"]
-motion_scale = Vector2(0.05, 0.05)
+motion_scale = Vector2(0.015, 0.015)
 
 [node name="bg" type="ColorRect" parent="bg/ParallaxLayer"]
 material = SubResource("ShaderMaterial_wj07n")
@@ -107,231 +114,1114 @@ texture = SubResource("GradientTexture2D_s36se")
 
 [node name="deco" type="Node2D" parent="."]
 
-[node name="deco1" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(2173, 634)
-rotation = -4.71239
-scale = Vector2(-1, 1)
+[node name="drop" type="Node2D" parent="deco"]
+position = Vector2(26773, 0)
+
+[node name="deco1" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(11412, 634)
+rotation = -1.5708
+scale = Vector2(1, -1)
 movingdir = -1
 movingtime = 2.0
 
-[node name="deco19" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(7097, 543)
+[node name="deco19" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(16336, 543)
+rotation = -1.57079
+scale = Vector2(1, -1)
+
+[node name="deco5" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(12531, 620)
+
+[node name="deco9" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(13823, 634)
+
+[node name="deco6" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(13156, 659)
+rotation = -1.57079
+scale = Vector2(1, -1)
+
+[node name="deco2" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(11632, 27)
+rotation = 1.57079
+
+[node name="deco8" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(13546, 72)
+rotation = 1.57079
+
+[node name="deco15" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(17277, 613)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="deco16" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(15392, 55)
+rotation = 1.57079
+
+[node name="deco20" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(16706, 48)
 rotation = 1.5708
-scale = Vector2(-1, 1)
 
-[node name="deco5" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(3292, 620)
+[node name="deco21" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(17813, 588)
+rotation = 3.14159
+scale = Vector2(1, -1)
 
-[node name="deco9" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(4584, 634)
-
-[node name="deco6" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(3917, 659)
+[node name="deco22" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(17209, 18)
 rotation = 1.5708
-scale = Vector2(-1, 1)
 
-[node name="deco2" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(2393, 27)
-rotation = -1.5708
-scale = Vector2(-1, -1)
+[node name="deco23" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(18450, 661)
+rotation = -2.3562
+scale = Vector2(1, -1)
 
-[node name="deco8" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(4307, 72)
-rotation = -1.5708
-scale = Vector2(-1, -1)
+[node name="deco24" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(18053, -22)
+rotation = 2.3562
 
-[node name="deco15" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(8038, 613)
+[node name="deco3" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(12074, 646)
+
+[node name="deco10" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(13409, 656)
+
+[node name="deco12" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(14472, 593)
+
+[node name="deco13" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(15246, 593)
+
+[node name="deco14" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(15852, 593)
+
+[node name="deco26" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(16641, 584)
 rotation = 3.14159
 scale = Vector2(1, -1)
 
-[node name="deco16" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(6153, 55)
+[node name="deco27" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(17321, 796)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="deco25" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(18286, 701)
+
+[node name="deco4" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(12420, 152)
+rotation = 3.14159
+
+[node name="deco7" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(13025, 152)
+rotation = 3.14159
+
+[node name="deco11" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(14283, 152)
+rotation = 3.14159
+
+[node name="deco17" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(16090, 152)
+rotation = 3.14159
+
+[node name="deco18" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(14873, 163)
+rotation = 3.14159
+
+[node name="deco28" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(18810, 637)
 rotation = -1.5708
-scale = Vector2(-1, -1)
+scale = Vector2(1, -1)
 
-[node name="deco20" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(7467, 48)
-rotation = 4.71239
-scale = Vector2(-1, -1)
+[node name="deco29" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(23734, 546)
+rotation = -1.57079
+scale = Vector2(1, -1)
 
-[node name="deco21" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(8574, 588)
+[node name="deco30" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(19929, 623)
+
+[node name="deco31" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(21221, 637)
+
+[node name="deco32" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(20554, 662)
+rotation = -1.57079
+scale = Vector2(1, -1)
+
+[node name="deco33" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(19167, 61)
+rotation = 1.57079
+
+[node name="deco34" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(20972, 75)
+rotation = 1.57079
+
+[node name="deco35" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(24703, 616)
 rotation = 3.14159
 scale = Vector2(1, -1)
 
-[node name="deco22" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(7970, 18)
-rotation = 4.71239
-scale = Vector2(-1, -1)
+[node name="deco36" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(22818, 58)
+rotation = 1.57079
 
-[node name="deco23" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(9211, 661)
-rotation = 3.92699
-scale = Vector2(1, -1)
-
-[node name="deco24" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(8814, -22)
-rotation = 5.49779
-scale = Vector2(-1, -1)
-
-[node name="deco3" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(2835, 646)
-
-[node name="deco10" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(4170, 656)
-
-[node name="deco12" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(5233, 593)
-
-[node name="deco13" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(6007, 593)
-
-[node name="deco14" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(6613, 593)
-
-[node name="deco26" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(7402, 584)
-scale = Vector2(-1, 1)
-
-[node name="deco27" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(8082, 796)
-scale = Vector2(-1, 1)
-
-[node name="deco25" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(9047, 701)
-
-[node name="deco4" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(3181, 152)
-rotation = 3.14159
-
-[node name="deco7" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(3786, 152)
-rotation = 3.14159
-
-[node name="deco11" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(5044, 152)
-rotation = 3.14159
-
-[node name="deco17" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(6851, 152)
-rotation = 3.14159
-
-[node name="deco18" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(5634, 163)
-rotation = 3.14159
-
-[node name="deco28" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(9571, 637)
-rotation = -4.71239
-scale = Vector2(-1, 1)
-
-[node name="deco29" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(14495, 546)
+[node name="deco37" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(24132, 51)
 rotation = 1.5708
-scale = Vector2(-1, 1)
 
-[node name="deco30" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(10690, 623)
+[node name="deco38" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(25360, 708)
+rotation = 3.14159
+scale = Vector2(1, -1)
 
-[node name="deco31" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(11982, 637)
-
-[node name="deco32" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(11315, 662)
+[node name="deco39" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(24634, 43)
 rotation = 1.5708
-scale = Vector2(-1, 1)
 
-[node name="deco33" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(9928, 61)
-rotation = -1.5708
-scale = Vector2(-1, -1)
+[node name="deco40" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(25876, 664)
+rotation = -2.3562
+scale = Vector2(1, -1)
 
-[node name="deco34" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(11733, 75)
-rotation = -1.5708
-scale = Vector2(-1, -1)
+[node name="deco41" parent="deco/drop" instance=ExtResource("2_yowm7")]
+position = Vector2(25479, -19)
+rotation = 2.3562
 
-[node name="deco35" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(15464, 616)
+[node name="deco42" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(19500, 649)
+
+[node name="deco43" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(20835, 659)
+
+[node name="deco44" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(21898, 596)
+
+[node name="deco45" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(22672, 596)
+
+[node name="deco46" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(23278, 596)
+
+[node name="deco47" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(24067, 587)
 rotation = 3.14159
 scale = Vector2(1, -1)
 
-[node name="deco36" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(13579, 58)
+[node name="deco48" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(24747, 799)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="deco49" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(25712, 704)
+
+[node name="deco50" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(19846, 155)
+rotation = 3.14159
+
+[node name="deco51" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(20451, 155)
+rotation = 3.14159
+
+[node name="deco52" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(21709, 155)
+rotation = 3.14159
+
+[node name="deco53" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(23516, 155)
+rotation = 3.14159
+
+[node name="deco54" parent="deco/drop" instance=ExtResource("3_5wgtu")]
+position = Vector2(22299, 166)
+rotation = 3.14159
+
+[node name="section1" type="Node2D" parent="deco"]
+
+[node name="deco1" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(896, 729)
+rotation = -0.314159
+
+[node name="deco2" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(978, -5.00012)
+rotation = 2.82743
+scale = Vector2(1, 1)
+
+[node name="deco3" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(1339, -14)
+rotation = 1.88496
+
+[node name="deco4" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(1772, 554)
+
+[node name="deco7" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(2445, 912)
+
+[node name="deco15" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(6961, 9)
+scale = Vector2(1, -1)
+
+[node name="deco19" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(7570, -122)
+scale = Vector2(1, -1)
+
+[node name="deco20" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(8153, -86)
+scale = Vector2(1, -1)
+
+[node name="deco16" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(7299, 659)
+
+[node name="deco17" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(7865, 659)
+
+[node name="deco18" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(8446, 659)
+
+[node name="deco27" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(11371, 653)
+
+[node name="deco33" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(13133, 646)
+
+[node name="deco34" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(13386, 646)
+
+[node name="deco35" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(13634, 649)
+
+[node name="deco36" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(13876, 649)
+
+[node name="deco37" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(13258, -229)
+scale = Vector2(1, -1)
+
+[node name="deco38" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(13511, -229)
+scale = Vector2(1, -1)
+
+[node name="deco39" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(13759, -226)
+scale = Vector2(1, -1)
+
+[node name="deco40" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(14001, -226)
+scale = Vector2(1, -1)
+
+[node name="deco28" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(11757, 89)
+scale = Vector2(1, -1)
+
+[node name="deco5" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(2224, 118)
+scale = Vector2(1, -1)
+
+[node name="deco6" parent="deco/section1" instance=ExtResource("4_s36se")]
+position = Vector2(2652, 118)
+scale = Vector2(1, -1)
+
+[node name="deco8" parent="deco/section1" instance=ExtResource("3_5wgtu")]
+position = Vector2(3112, 667)
+
+[node name="deco11" parent="deco/section1" instance=ExtResource("3_5wgtu")]
+position = Vector2(3515, 667)
+
+[node name="deco12" parent="deco/section1" instance=ExtResource("3_5wgtu")]
+position = Vector2(3909, 667)
+
+[node name="deco9" parent="deco/section1" instance=ExtResource("3_5wgtu")]
+position = Vector2(3322, 159)
+scale = Vector2(1, -1)
+
+[node name="deco21" parent="deco/section1" instance=ExtResource("3_5wgtu")]
+position = Vector2(8966, 140)
+scale = Vector2(1, -1)
+
+[node name="deco22" parent="deco/section1" instance=ExtResource("3_5wgtu")]
+position = Vector2(9667, 599)
+
+[node name="deco23" parent="deco/section1" instance=ExtResource("3_5wgtu")]
+position = Vector2(10723, 599)
+
+[node name="deco10" parent="deco/section1" instance=ExtResource("3_5wgtu")]
+position = Vector2(3696, 159)
+scale = Vector2(1, -1)
+
+[node name="sawblade" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(4394, 175)
+
+[node name="sawblade2" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(4605, 490)
+
+[node name="sawblade3" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(4655, 224)
+
+[node name="sawblade13" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12160, 511)
+
+[node name="sawblade14" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12316, 79)
+
+[node name="sawblade15" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12457, 77)
+
+[node name="sawblade16" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12604, 76)
+
+[node name="sawblade17" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12463, 509)
+
+[node name="sawblade18" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12299, 504)
+
+[node name="sawblade19" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12634, 509)
+
+[node name="sawblade20" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12801, 498)
+
+[node name="sawblade21" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12801, 498)
+
+[node name="sawblade22" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12603, 649)
+
+[node name="sawblade23" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(12770, 640)
+
+[node name="sawblade4" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(4903, 495)
+
+[node name="sawblade5" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(4915, 82)
+
+[node name="sawblade6" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+position = Vector2(5184, 392)
+
+[node name="sawblade7" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(5894, 538)
+
+[node name="sawblade8" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(6270, 483)
+
+[node name="sawblade9" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(6529, 353)
+
+[node name="sawblade10" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(6474, 157)
+
+[node name="sawblade11" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(6275, 153)
+
+[node name="sawblade12" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(6750, 531)
+
+[node name="sawblade24" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14478, 457)
+
+[node name="sawblade25" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14604, 457)
+
+[node name="sawblade26" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14724, 457)
+
+[node name="sawblade27" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14850, 457)
+
+[node name="sawblade28" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14961, 457)
+
+[node name="sawblade29" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15087, 457)
+
+[node name="sawblade30" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15190, 457)
+
+[node name="sawblade31" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15316, 457)
+
+[node name="sawblade32" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14478, 558)
+
+[node name="sawblade33" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14604, 558)
+
+[node name="sawblade34" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14724, 558)
+
+[node name="sawblade35" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14850, 558)
+
+[node name="sawblade36" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14961, 558)
+
+[node name="sawblade37" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15087, 558)
+
+[node name="sawblade38" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15190, 558)
+
+[node name="sawblade39" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15316, 558)
+
+[node name="sawblade40" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14478, 641)
+
+[node name="sawblade41" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14604, 641)
+
+[node name="sawblade42" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14724, 641)
+
+[node name="sawblade43" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14850, 641)
+
+[node name="sawblade44" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14961, 641)
+
+[node name="sawblade45" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15087, 641)
+
+[node name="sawblade46" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15190, 641)
+
+[node name="sawblade47" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15316, 641)
+
+[node name="sawblade48" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14478, 184)
+
+[node name="sawblade49" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14604, 184)
+
+[node name="sawblade50" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14724, 184)
+
+[node name="sawblade51" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14850, 184)
+
+[node name="sawblade52" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14961, 184)
+
+[node name="sawblade53" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15087, 184)
+
+[node name="sawblade54" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15190, 184)
+
+[node name="sawblade55" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15316, 184)
+
+[node name="sawblade56" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14478, 73)
+
+[node name="sawblade57" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14604, 73)
+
+[node name="sawblade58" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14724, 73)
+
+[node name="sawblade59" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14850, 73)
+
+[node name="sawblade60" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(14961, 73)
+
+[node name="sawblade61" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15087, 73)
+
+[node name="sawblade62" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15190, 73)
+
+[node name="sawblade63" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(15316, 73)
+
+[node name="sawblade64" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(9286, 9)
+
+[node name="sawblade65" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(9412, 9)
+
+[node name="sawblade66" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(9532, 9)
+
+[node name="sawblade67" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(9658, 9)
+
+[node name="sawblade68" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(9765, 10)
+
+[node name="sawblade72" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(10873, 621)
+
+[node name="sawblade73" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(10999, 621)
+
+[node name="sawblade74" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(11119, 621)
+
+[node name="sawblade75" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(11245, 621)
+
+[node name="sawblade76" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(11352, 622)
+
+[node name="sawblade77" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(12178, 587)
+
+[node name="sawblade78" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(12304, 587)
+
+[node name="sawblade79" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(12424, 587)
+
+[node name="sawblade80" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(12550, 587)
+
+[node name="sawblade81" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(12657, 588)
+
+[node name="sawblade82" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(12225, -32)
+
+[node name="sawblade83" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(12351, -32)
+
+[node name="sawblade84" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(12471, -32)
+
+[node name="sawblade85" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(12597, -32)
+
+[node name="sawblade86" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(12704, -31)
+
+[node name="sawblade69" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(9895, 106)
+
+[node name="sawblade70" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(9998, 106)
+
+[node name="sawblade71" parent="deco/section1" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.7, 1, 1)
+position = Vector2(10124, 106)
+
+[node name="deco13" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(5414, 600)
+
+[node name="deco14" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(5826, 68)
+scale = Vector2(1, -1)
+
+[node name="deco24" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(9328, 519)
+
+[node name="deco25" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(10194, 555)
+
+[node name="deco29" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(10401, -89)
+rotation = 1.5708
+
+[node name="deco30" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(10943, -120)
+rotation = 2.35619
+scale = Vector2(1, 1)
+
+[node name="deco31" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(12830, -180)
+rotation = 2.35619
+scale = Vector2(1, 1)
+
+[node name="deco32" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(12182, -191)
+rotation = 2.35619
+scale = Vector2(1, 1)
+
+[node name="deco26" parent="deco/section1" instance=ExtResource("2_yowm7")]
+position = Vector2(9937, 47)
+scale = Vector2(1, -1)
+
+[node name="section2" type="Node2D" parent="deco"]
+
+[node name="sawblade" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.686275, 1, 1)
+position = Vector2(15681, 537)
+scale = Vector2(2, 2)
+
+[node name="sawblade2" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.686275, 1, 1)
+position = Vector2(15966, 130)
+scale = Vector2(2, 2)
+
+[node name="sawblade3" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.686275, 1, 1)
+position = Vector2(16269, 547)
+scale = Vector2(2, 2)
+
+[node name="sawblade4" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.686275, 1, 1)
+position = Vector2(16514, 106)
+scale = Vector2(2, 2)
+
+[node name="sawblade5" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.686275, 1, 1)
+position = Vector2(16570, 568)
+scale = Vector2(2, 2)
+
+[node name="sawblade6" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.686275, 1, 1)
+position = Vector2(16814, 94)
+scale = Vector2(2, 2)
+
+[node name="sawblade7" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.686275, 1, 1)
+position = Vector2(16838, 556)
+scale = Vector2(2, 2)
+
+[node name="sawblade8" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(21296, -10)
+scale = Vector2(2, 2)
+
+[node name="sawblade9" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(21608, -10)
+scale = Vector2(2, 2)
+
+[node name="sawblade10" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(21923, -10)
+scale = Vector2(2, 2)
+
+[node name="sawblade11" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(22247, -10)
+scale = Vector2(2, 2)
+
+[node name="sawblade16" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(22971, -67)
+
+[node name="sawblade17" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(23015, 10)
+
+[node name="sawblade18" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(23069, 105)
+
+[node name="sawblade19" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(23118, 235)
+
+[node name="sawblade20" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(23180, 356)
+
+[node name="sawblade21" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(23228, 453)
+
+[node name="sawblade22" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(22900, 557)
+
+[node name="sawblade12" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(21296, 606)
+scale = Vector2(2, 2)
+
+[node name="sawblade13" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(21608, 606)
+scale = Vector2(2, 2)
+
+[node name="sawblade14" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(21923, 606)
+scale = Vector2(2, 2)
+
+[node name="sawblade15" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(22240, 604)
+scale = Vector2(2, 2)
+
+[node name="sawblade23" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(23966, 604)
+scale = Vector2(3, 3)
+
+[node name="sawblade24" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(24308, 65)
+scale = Vector2(3, 3)
+
+[node name="sawblade25" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(24712, 585)
+scale = Vector2(3, 3)
+
+[node name="sawblade26" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(25022, 151)
+scale = Vector2(3, 3)
+
+[node name="sawblade27" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(25286, 620)
+scale = Vector2(3, 3)
+
+[node name="sawblade28" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(25757, 168)
+scale = Vector2(3, 3)
+
+[node name="sawblade29" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(25700, 629)
+scale = Vector2(3, 3)
+
+[node name="sawblade30" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(25379, 104)
+scale = Vector2(3, 3)
+
+[node name="sawblade31" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(26258, 416)
+scale = Vector2(3, 3)
+
+[node name="deco1" parent="deco/section2" instance=ExtResource("3_5wgtu")]
+position = Vector2(17461, 712)
+scale = Vector2(1.5, 1.5)
+
+[node name="deco5" parent="deco/section2" instance=ExtResource("3_5wgtu")]
+position = Vector2(17876, 712)
+scale = Vector2(1.5, 1.5)
+
+[node name="deco6" parent="deco/section2" instance=ExtResource("3_5wgtu")]
+position = Vector2(18234, 712)
+scale = Vector2(1.5, 1.5)
+
+[node name="deco7" parent="deco/section2" instance=ExtResource("3_5wgtu")]
+position = Vector2(18653, 712)
+scale = Vector2(1.5, 1.5)
+
+[node name="deco2" parent="deco/section2" instance=ExtResource("3_5wgtu")]
+position = Vector2(17747, -88)
+scale = Vector2(1.5, -1.5)
+
+[node name="deco3" parent="deco/section2" instance=ExtResource("3_5wgtu")]
+position = Vector2(18082, -88)
+scale = Vector2(1.5, -1.5)
+
+[node name="deco4" parent="deco/section2" instance=ExtResource("3_5wgtu")]
+position = Vector2(18407, -88)
+scale = Vector2(1.5, -1.5)
+
+[node name="deco8" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(19297, 745)
+
+[node name="deco12" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(19905, 745)
+
+[node name="deco13" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(20493, 745)
+
+[node name="deco14" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(21078, 869)
+
+[node name="deco15" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(22713, 748)
+
+[node name="deco16" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(23290, 22)
+scale = Vector2(1, -1)
+
+[node name="deco9" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(19655, 47)
+scale = Vector2(1, -1)
+
+[node name="deco10" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(20194, 47)
+scale = Vector2(1, -1)
+
+[node name="deco11" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(20718, 47)
+scale = Vector2(1, -1)
+
+[node name="deco17" parent="deco/section2" instance=ExtResource("2_yowm7")]
+position = Vector2(26660, 510)
+
+[node name="deco18" parent="deco/section2" instance=ExtResource("2_yowm7")]
+position = Vector2(27335, -4)
+rotation = -3.14159
+
+[node name="deco19" parent="deco/section2" instance=ExtResource("2_yowm7")]
+position = Vector2(27655, 681)
 rotation = -1.5708
-scale = Vector2(-1, -1)
+scale = Vector2(1.5, 1.5)
 
-[node name="deco37" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(14893, 51)
-rotation = 4.71239
-scale = Vector2(-1, -1)
-
-[node name="deco38" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(16121, 708)
-rotation = 3.14159
+[node name="deco20" parent="deco/section2" instance=ExtResource("3_5wgtu")]
+position = Vector2(27806, 122)
 scale = Vector2(1, -1)
 
-[node name="deco39" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(15395, 43)
-rotation = 4.71239
-scale = Vector2(-1, -1)
+[node name="deco21" parent="deco/section2" instance=ExtResource("2_yowm7")]
+position = Vector2(28083, 510)
 
-[node name="deco40" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(16637, 664)
-rotation = 3.92699
+[node name="deco22" parent="deco/section2" instance=ExtResource("2_yowm7")]
+position = Vector2(28758, -4)
+rotation = -3.14159
+
+[node name="deco23" parent="deco/section2" instance=ExtResource("2_yowm7")]
+position = Vector2(29078, 681)
+rotation = -1.5708
+scale = Vector2(1.5, 1.5)
+
+[node name="deco24" parent="deco/section2" instance=ExtResource("3_5wgtu")]
+position = Vector2(29229, 122)
 scale = Vector2(1, -1)
 
-[node name="deco41" parent="deco" instance=ExtResource("2_yowm7")]
-position = Vector2(16240, -19)
-rotation = 5.49779
-scale = Vector2(-1, -1)
+[node name="deco25" parent="deco/section2" instance=ExtResource("2_yowm7")]
+position = Vector2(29434, 510)
 
-[node name="deco42" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(10261, 649)
+[node name="deco26" parent="deco/section2" instance=ExtResource("2_yowm7")]
+position = Vector2(30109, -4)
+rotation = -3.14159
 
-[node name="deco43" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(11596, 659)
+[node name="deco27" parent="deco/section2" instance=ExtResource("2_yowm7")]
+position = Vector2(30429, 681)
+rotation = -1.5708
+scale = Vector2(1.5, 1.5)
 
-[node name="deco44" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(12659, 596)
+[node name="deco28" parent="deco/section2" instance=ExtResource("3_5wgtu")]
+position = Vector2(30580, 122)
+scale = Vector2(1, -1)
 
-[node name="deco45" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(13433, 596)
+[node name="deco29" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(31285, 607)
 
-[node name="deco46" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(14039, 596)
+[node name="deco30" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(31734, 607)
 
-[node name="deco47" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(14828, 587)
-scale = Vector2(-1, 1)
+[node name="deco31" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(32160, 607)
 
-[node name="deco48" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(15508, 799)
-scale = Vector2(-1, 1)
+[node name="deco32" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(32554, 607)
 
-[node name="deco49" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(16473, 704)
+[node name="deco33" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(32859, 793)
 
-[node name="deco50" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(10607, 155)
-rotation = 3.14159
+[node name="deco34" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(33184, 799)
 
-[node name="deco51" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(11212, 155)
-rotation = 3.14159
+[node name="deco35" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(31517, -125)
+scale = Vector2(1, -1)
 
-[node name="deco52" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(12470, 155)
-rotation = 3.14159
+[node name="deco36" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(31964, -161)
+scale = Vector2(1, -1)
 
-[node name="deco53" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(14277, 155)
-rotation = 3.14159
+[node name="deco37" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(32356, -204)
+scale = Vector2(1, -1)
 
-[node name="deco54" parent="deco" instance=ExtResource("3_5wgtu")]
-position = Vector2(13060, 166)
-rotation = 3.14159
+[node name="deco38" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(32760, -209)
+scale = Vector2(1, -1)
+
+[node name="deco39" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(33048, -105)
+scale = Vector2(1, -1)
+
+[node name="deco40" parent="deco/section2" instance=ExtResource("4_s36se")]
+position = Vector2(33634, 1)
+scale = Vector2(1, -1)
+
+[node name="sawblade32" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(32290, 705)
+scale = Vector2(3, 3)
+
+[node name="sawblade33" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(32490, -384)
+scale = Vector2(3, 3)
+
+[node name="sawblade34" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(33312, -175)
+scale = Vector2(3, 3)
+
+[node name="sawblade35" parent="deco/section2" instance=ExtResource("5_8qn3e")]
+modulate = Color(0, 0.65, 1, 1)
+position = Vector2(33959, -136)
+scale = Vector2(3, 3)
+
+[node name="portalsandstuff" type="Node2D" parent="deco"]
+
+[node name="mini" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(507, -298.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_vfccl")
+
+[node name="mini4" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(30937, 212)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_vfccl")
+
+[node name="mini3" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(11039, 307)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_vfccl")
+
+[node name="mini5" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(18942, 317)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_vfccl")
+
+[node name="mini2" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(6011, 432)
+rotation = 0.428149
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_vfccl")
+
+[node name="big" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(617, -298.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_vcl1g")
+
+[node name="big5" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(36273, 305)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_vcl1g")
+
+[node name="big4" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(23548, 409)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_vcl1g")
+
+[node name="big2" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(2862, 536)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_vcl1g")
+
+[node name="big6" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(14188, 329)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_vcl1g")
+
+[node name="big3" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(8691, 333)
+rotation = 0.354936
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_vcl1g")
+
+[node name="spd1" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(394, -298.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_xdwl4")
+
+[node name="spd4" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(12924, 291)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_xdwl4")
+
+[node name="spd2" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(295, -298.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_odhm6")
+
+[node name="spd7" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(15472, 353)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_odhm6")
+
+[node name="spd5" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(23562, 417)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_odhm6")
+
+[node name="spd3" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(184, -298.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_w08k7")
+
+[node name="spd6" type="Sprite2D" parent="deco/portalsandstuff"]
+position = Vector2(36272, 308)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_w08k7")
 
 [node name="wave" parent="." instance=ExtResource("1_kwcxs")]
 position = Vector2(224, 204)
@@ -339,51 +1229,124 @@ position = Vector2(224, 204)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5wgtu")
 
-[node name="attributechanger4" parent="." instance=ExtResource("4_efggw")]
-position = Vector2(1395, 0)
-speedmod = 1.5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger4"]
-position = Vector2(61, 457.5)
-shape = SubResource("RectangleShape2D_g8l4j")
-
-[node name="attributechanger6" parent="." instance=ExtResource("4_efggw")]
-position = Vector2(8702, 0)
-speedmod = 0.75
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger6"]
-position = Vector2(61, 457.5)
-shape = SubResource("RectangleShape2D_g8l4j")
-
-[node name="attributechanger7" parent="." instance=ExtResource("4_efggw")]
-position = Vector2(9246, 0)
-speedmod = 1.5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger7"]
-position = Vector2(61, 457.5)
-shape = SubResource("RectangleShape2D_g8l4j")
-
-[node name="attributechanger8" parent="." instance=ExtResource("4_efggw")]
-position = Vector2(15725, 0)
-speedmod = 0.5
-anglemod = 63.5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger8"]
-position = Vector2(61, 457.5)
-shape = SubResource("RectangleShape2D_g8l4j")
-
-[node name="attributechanger5" parent="." instance=ExtResource("4_efggw")]
-position = Vector2(17012, 0)
-speedmod = 1.75
-anglemod = 63.5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger5"]
-position = Vector2(61, 457.5)
-shape = SubResource("RectangleShape2D_g8l4j")
-
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="water1" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_6m7oc")
 offset_left = -420.0
 offset_top = 562.0
 offset_right = 18258.0
 offset_bottom = 777.0
+
+[node name="water2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6m7oc")
+offset_left = 18256.0
+offset_top = 562.0
+offset_right = 36934.0
+offset_bottom = 777.0
+
+[node name="water3" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6m7oc")
+offset_left = 36934.0
+offset_top = 562.0
+offset_right = 55612.0
+offset_bottom = 777.0
+
+[node name="water4" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6m7oc")
+offset_left = 55612.0
+offset_top = 562.0
+offset_right = 74290.0
+offset_bottom = 777.0
+
+[node name="attributechanger" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(280, 0)
+anglemod = 63.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger4" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(5972, 2)
+anglemod = 63.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger4"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger2" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(2830, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger2"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger5" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(8655, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger5"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger6" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(10986, -28)
+anglemod = 63.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger6"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger7" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(12886, -15)
+speedmod = 0.75
+anglemod = 63.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger7"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger8" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(14147, -15)
+speedmod = 0.75
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger8"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger9" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(15445, -15)
+speedmod = 1.25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger9"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger10" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(18887, -15)
+anglemod = 63.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger10"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger11" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(23518, -15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger11"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger12" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(30898, -15)
+anglemod = 63.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger12"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")
+
+[node name="attributechanger3" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(36232, 0)
+speedmod = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attributechanger3"]
+position = Vector2(42, 395.5)
+shape = SubResource("RectangleShape2D_6fk1w")

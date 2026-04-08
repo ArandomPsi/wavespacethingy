@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca8o0rfokdgch"]
+
+[ext_resource type="Script" uid="uid://b0tm5jxibj01m" path="res://scripts/decos.gd" id="1_fnawt"]
+[ext_resource type="Texture2D" uid="uid://dxw5bcrpnbc3i" path="res://wavespaceassets/Waved3.svg" id="2_56eo4"]
+
+[node name="deco1" type="Node2D"]
+script = ExtResource("1_fnawt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(30.5, 0)
+scale = Vector2(2, 4)
+texture = ExtResource("2_56eo4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(5, 162)
+polygon = PackedVector2Array(-8, -584, -397, 174, 440, 181)
+
+[node name="enabaler" type="VisibleOnScreenEnabler2D" parent="."]
+visible = false
+position = Vector2(1.5, 0.5)
+scale = Vector2(58.85, 38.75)
+
+[connection signal="screen_entered" from="enabaler" to="." method="_on_enabaler_screen_entered"]

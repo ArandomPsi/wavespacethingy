@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b34pj838mwjck"]
+
+[ext_resource type="Script" uid="uid://b0tm5jxibj01m" path="res://scripts/decos.gd" id="1_u4tfn"]
+[ext_resource type="Texture2D" uid="uid://b6pjvtbltngpv" path="res://wavespaceassets/OutlineSawblade01.svg" id="1_v84ys"]
+[ext_resource type="Script" uid="uid://dfmbepo2gney4" path="res://scripts/sawblade.gd" id="3_7jvic"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u4tfn"]
+radius = 55.0
+
+[node name="sawblade" type="Node2D"]
+script = ExtResource("1_u4tfn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_v84ys")
+script = ExtResource("3_7jvic")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_u4tfn")
+
+[node name="enabaler" type="VisibleOnScreenEnabler2D" parent="."]
+visible = false
+scale = Vector2(34.9, 47)
+
+[connection signal="screen_entered" from="enabaler" to="." method="_on_enabaler_screen_entered"]
